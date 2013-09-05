@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试页面</title>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#list').delegate('a','click',function(){
+                window.location.replace( $(this).attr('href') );
+                return false;
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="wrapper" class="round">
+    <ul id="list">
+        <li><a href="http://www.baidu.com">baidu.com</a></li>
+    </ul>
+</div>
+</body>
+</html>

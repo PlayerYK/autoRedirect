@@ -1,0 +1,15 @@
+{
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "name": "AutoSrc",
+    "description": "auto jump to dev.",
+    "permissions": ["tabs","http://ecd.ecc.com/*"],
+    "options_page": "options.html",
+    "page_action": {
+		"default_title": "Redirect to Dev",
+        "default_icon": "icon.png"
+    },
+    "background": {
+        "scripts": ["jquery.min.js","background.js"]
+    }
+}

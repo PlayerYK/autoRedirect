@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AutoSrc 选项</title>
+    <style type="text/css">
+        body {
+            margin: 0 auto;
+            width: 800px;
+            font-family: helvetica, arial, sans-serif;
+            color:#555;
+        }
+        ul,li{
+            padding:0;
+            list-style:inside;
+        }
+        
+        #header {
+            margin-top: 1em;
+        }
+        #title {
+            font-weight: bold;
+            font-size: large;
+        }
+        .section-header {
+            margin-top: 0.5em;
+            padding:3px 0 2px 5px;
+            background-color: #EBEFF9;
+            font-weight: bold;
+            font-size: small;
+        }
+        .section-content {
+            margin-top: 1em;
+            margin-bottom: 1em;
+            padding-left: 5px;
+            font-size: small;
+        }
+        .jump-list{
+            width:90%;
+            height:150px;
+        }
+        .option-name {
+            margin-top: 1em;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        #get-msg-interval-alert {
+            font-weight: bold;
+            color: red;
+        }
+        #footer {
+            margin-top: 1em;
+        }
+        .foot-text {
+            font-size: small;
+            padding-left: 5px;
+        }
+        hr {
+        }
+        .note {
+            margin-top: 0.5em;
+            font-size: x-small;
+            color:#777;
+        }
+        .msg-correct{
+            background-color:#2ecc71;
+            position:fixed;
+            padding:10px 20px;
+            color:white;
+            top:0;
+            left:50%;
+            margin-left:-100px;
+            -webkit-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            display:none;
+        }
+    </style>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="options.js"></script>
+</head>
+<body>
+<div id="header">
+    <span id="title">跳转选项</span>
+</div>
+<div id="content">
+    <div class="section-header">基本设置</div>
+    <div class="section-content">
+        <div class="option">
+            <div class="option-name">dev环境</div>
+            <div class="line">
+                <textarea name="jump_list" id="jump_list" class="jump-list"></textarea>
+            </div>
+            <div class="note">
+                <ul>
+                    <li>本地路径####dev路径</li>
+                    <li>支持通配符*</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section-header">自动跳转</div>
+    <div class="section-content">
+        <div class="line">
+            <label for="autoRedirect"><input type="checkbox" name="autoRedirect" id="autoRedirect"/> 自动跳转</label>
+            <div class="note">
+                <ul>
+                    <li>如果有匹配结果就自动跳转</li>
+                </ul>
+            </div>
+        </div>
+        <div class="line">
+            <input type="button" value="保存" id="save"/>
+        </div>
+    </div>
+<hr>
+</div>
+<div id="footer">
+    <div class="foot-text">
+        ECD kamalyu
+    </div>    
+</div>
+
+<div class="msg-correct" id="tips"></div>
+</body>
+</html>
