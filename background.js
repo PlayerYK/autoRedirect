@@ -1,10 +1,18 @@
 
+// get 
+var isAuto = localStorage['jump_list_auto'] || 0;
+if(isAuto == 1){
+    chrome.browserAction.setIcon({path:"images/icon_19_bold.png"});
+}else{
+    chrome.browserAction.setIcon({path:"images/icon_19.png"});
+}
+
+
 // Called when the url of a tab changes.
 function checkForValidUrl(tabId, changeInfo, tab) {
     // If the letter 'file:///' is found in the tab's URL...
     if (tab && tab.url && tab.url.indexOf('file:///') > -1) {
-        // ... show the page action.
-//        chrome.pageAction.show(tabId);
+        // ...check options and start jump.
         var jump_list = localStorage['jump_list'];
         if(!jump_list){
             $.ajax({
@@ -16,10 +24,8 @@ function checkForValidUrl(tabId, changeInfo, tab) {
                 }
             });
         }
-        var isAuto = localStorage['jump_list_auto'] || 0;
-//        console.log(isAuto);
+        isAuto = localStorage['jump_list_auto'] || 0;
         if(isAuto == 1){
-//            console.log('auto start');
             startProcess(tab);
         }
     }
@@ -30,13 +36,14 @@ chrome.tabs.onUpdated.addListener(checkForValidUrl);
 function startProcess(tab){
     chrome.tabs.getSelected(function(tab){
         var url = encodeURI(tab.url);
+        debugLog('local tab url ' + url,2);
         var src_list = localStorage['jump_list'].split('\n');
         var j_list = [];
         $.each(src_list,function(i,v){
             var line = $.trim(v);
             if(line != ''){
-                var regStr = v.split('####')[0];
-                var urlStr = v.split('####')[1];
+                var regStr = line.split('####')[0];
+                var urlStr = line.split('####')[1];
                 j_list.push({
                     'regStr':regStr.replace(/\//g,'\\/').replace(/\*/g,'\.\*\?').replace(/\n/,'').replace(/\r/,''),
                     'urlStr':urlStr.replace(/\n/,'').replace(/\r/,'')
@@ -54,7 +61,7 @@ function startProcess(tab){
                 }
             }
         });
-
+        debugLog(result_list,2);
         switch (result_list.length){
             case 0:
 //                chrome.tabs.create({
@@ -83,11 +90,12 @@ function startProcess(tab){
 
 
 chrome.webRequest.onBeforeRequest.addListener(function(details){
-    console.log('called details params');
-    console.log(details);
+    debugLog('called details params');
+    debugLog(details);
+    debugLog('online tab url '+details.url,2);
 
-    var isAuto = localStorage['jump_list_auto'] || 0;
-    console.log('auto redirect: isAuto ' + isAuto);
+    isAuto = localStorage['jump_list_auto'] || 0;
+    debugLog('auto redirect: isAuto ' + isAuto);
     if(isAuto != 1){
         return;
     }
@@ -105,16 +113,14 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
         });
     }
 
-    console.log(src_list);
+    debugLog(src_list);
     var j_list = [];
     $.each(src_list,function(i,v){
         var line = $.trim(v);
-        console.log("line : "+line);
+        debugLog("line : "+line);
         if(line != ''){
-            var regStr = v.split('####')[0];
-            var urlStr = v.split('####')[1];
-            console.log(urlStr);
-            console.log(urlStr.replace(/\n/,''));
+            var regStr = line.split('####')[0];
+            var urlStr = line.split('####')[1];
             j_list.push({
                 'regStr':regStr.replace(/\//g,'\\/').replace(/\*/g,'\.\*\?').replace(/\n/,'').replace(/\r/,''),
                 'urlStr':urlStr.replace(/\n/,'').replace(/\r/,'')
@@ -133,8 +139,8 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
         }
     });
 
-    console.log('result length' + result_list.length);
-    console.log(result_list);
+    debugLog('result length ' + result_list.length);
+    debugLog(result_list,2);
     switch (result_list.length){
         case 0:
             break;
@@ -159,4 +165,10 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 //    types:["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"]
 },["blocking"]);
 
-
+var show_debug_level = 2;
+function debugLog(obj,level){
+    level = level || 0;
+    if(level >= show_debug_level){
+        console.log(obj);
+    }
+}

@@ -44,9 +44,9 @@
             margin-bottom: 5px;
             font-weight: bold;
         }
-        #get-msg-interval-alert {
-            font-weight: bold;
+        #msg-alert {
             color: red;
+            display:none;
         }
         #footer {
             margin-top: 1em;
@@ -54,6 +54,7 @@
         .foot-text {
             font-size: small;
             padding-left: 5px;
+            color:white;
         }
         hr {
         }
@@ -86,25 +87,14 @@
     <div class="section-header">基本设置</div>
     <div class="section-content">
         <div class="option">
-            <div class="option-name">dev环境</div>
+            <div class="option-name">原始路径####跳转路径</div>
             <div class="line">
                 <textarea name="jump_list" id="jump_list" class="jump-list"></textarea>
             </div>
             <div class="note">
                 <ul>
-                    <li>原始路径####跳转路径</li>
-                    <li>支持通配符*</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="section-header">自动跳转</div>
-    <div class="section-content">
-        <div class="line">
-            <label for="autoRedirect"><input type="checkbox" checked name="autoRedirect" id="autoRedirect"/> 自动跳转</label>
-            <div class="note">
-                <ul>
-                    <li>如果有匹配结果就自动跳转</li>
+                    <li>支持通配符 <span class="co_red">*</span></li>
+                    <li>小心循环重定向</li>
                 </ul>
             </div>
         </div>
@@ -112,7 +102,7 @@
             <input type="button" value="保存" id="save"/>
         </div>
     </div>
-<hr>
+    <div id="msg-alert"></div>
 </div>
 <div id="footer">
     <div class="foot-text">
