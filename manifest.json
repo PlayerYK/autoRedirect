@@ -2,9 +2,10 @@
     "version": "0.0.1",
     "manifest_version": 2,
     "name": "AutoSrc",
-    "description": "auto jump to dev.",
+    "description": "auto Redirect.",
     "permissions": [
-        "webRequest"
+        "tabs"
+        ,"webRequest"
         ,"webRequestBlocking"
         ,"http://*/*"
         ,"https://*/*"
@@ -12,5 +13,13 @@
     "options_page": "options.html",
     "background": {
         "scripts": ["jquery.min.js","background.js"]
+    },
+    "browser_action": {
+        "default_title": "auto Redirect",
+        "default_icon": {                    
+            "19": "images/icon_19.png",
+            "38": "images/icon_38.png"
+        },
+        "default_popup": "popup.html"
     }
 }
