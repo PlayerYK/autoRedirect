@@ -1,6 +1,6 @@
-v5/####http://static.paipaiimg.com/v5/
+paipai/static/v5/####http://static.paipaiimg.com/v5/
 paipai/static/####http://static.paipaiimg.com/
-static/####http://static.paipaiimg.com/
 paipai/paipai_b2b2c_rep/static_proj/trunk/static/####http://static.gtimg.com/
 paipai_b2b2c_rep/static/####http://static.gtimg.com/
 paipai_b2b2c_rep/*static/####http://static.gtimg.com/
+paipai/aq####http://aq.paipai.com/

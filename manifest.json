@@ -1,7 +1,7 @@
 {
     "version": "0.0.1",
     "manifest_version": 2,
-    "name": "AutoSrc",
+    "name": "AutoRedirect",
     "description": "auto Redirect.",
     "permissions": [
         "tabs"
@@ -21,5 +21,10 @@
             "38": "images/icon_38.png"
         },
         "default_popup": "popup.html"
+    },
+    "icons": { 
+        "16": "images/icon_19.png",
+        "19": "images/icon_19.png",
+        "48": "images/icon_38.png"
     }
 }

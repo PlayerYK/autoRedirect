@@ -11,13 +11,13 @@ function initValue() {
                 localStorage['jump_list'] = $('#jump_list').val();
             }
         });
-        return;
+    }else{
+        $('#jump_list').val(list);        
     }
     
-    $('#jump_list').val(list);
 }
 
-function checkCicleRedirect(src_list){
+function checkCircleRedirect(src_list){
     src_list = src_list.split('\n');
     var errorList = [];
     $.each(src_list,function(i,v){
@@ -39,7 +39,7 @@ $(function(){
     $('#save').click(function(){
         $('#msg-alert').empty().hide();
         var srcList = $('#jump_list').val();
-        var errorArr = checkCicleRedirect(srcList);
+        var errorArr = checkCircleRedirect(srcList);
         if(errorArr.length == 0){
             localStorage['jump_list'] = srcList;
             $('#tips').slideDown().text('保存成功！');

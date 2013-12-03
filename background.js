@@ -34,7 +34,8 @@ function checkForValidUrl(tabId, changeInfo, tab) {
 chrome.tabs.onUpdated.addListener(checkForValidUrl);
 
 function startProcess(tab){
-    chrome.tabs.getSelected(function(tab){
+    chrome.tabs.query({active:true,windowId: chrome.windows.WINDOW_ID_CURRENT},function(tabs){
+        var tab = tabs[0];
         var url = encodeURI(tab.url);
         debugLog('local tab url ' + url,2);
         var src_list = localStorage['jump_list'].split('\n');

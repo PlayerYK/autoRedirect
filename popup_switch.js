@@ -1,21 +1,20 @@
 $(function(){
     var isAuto = localStorage['jump_list_auto'] || 0;
+    var $slider = $('#slideThree');
     if(isAuto == 1){
-        $('#enable').attr('checked','checked');
-        $('#disable').removeAttr('checked');
+        $slider.attr('checked','checked');
     }else{
-        $('#disable').attr('checked','checked');
-        $('#enable').removeAttr('checked');
+        $slider.removeAttr('checked');
     }
-    
-    $('input[name="status"]').click(function(){
-        if($('input:checked').val() == 1){
+
+    $slider.click(function(){
+        if($slider.is(':checked')){
             localStorage['jump_list_auto'] = 1;
             chrome.browserAction.setIcon({path:"images/icon_19_bold.png"});
         }else{
             localStorage['jump_list_auto'] = 0;
             chrome.browserAction.setIcon({path:"images/icon_19.png"});
         }
-        setTimeout(function(){window.close();},10);
+//        setTimeout(function(){window.close();},500);
     })
 });
