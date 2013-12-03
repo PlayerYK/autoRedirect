@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Auto Redirect 选项</title>
+    <title>Auto Redirect Options</title>
     <style type="text/css">
         body {
             margin: 0 auto;
@@ -73,30 +73,32 @@
             display:none;
         }
     </style>
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <script type="text/javascript" src="options.js"></script>
+    <script type="text/javascript" src="script/jquery.min.js"></script>
+    <script type="text/javascript" src="script/options.js"></script>
 </head>
 <body>
 <div id="header">
-    <span id="title">跳转选项</span>
+    <span id="title">Auto Redirect Options</span>
 </div>
 <div id="content">
-    <div class="section-header">基本设置</div>
+    <div class="section-header">Redirect pattern</div>
     <div class="section-content">
         <div class="option">
-            <div class="option-name">原始路径####跳转路径</div>
+            <div class="option-name">original####URL</div>
             <div class="line">
                 <textarea name="jump_list" id="jump_list" class="jump-list"></textarea>
             </div>
             <div class="note">
                 <ul>
-                    <li>支持通配符 <span class="co_red">*</span></li>
-                    <li>小心循环重定向</li>
+                    <li>Local path to URL： local/path####http://mydevurl.com/subpath/</li>
+                    <li>URL to new URL： myDevUrl.com/path####http://myOnlineUrl.com/subpath/</li>
+                    <li>Support wildcard character <span class="co_red">*</span></li>
+                    <li>Be careful，Avoid redirect loop</li>
                 </ul>
             </div>
         </div>
         <div class="line">
-            <input type="button" value="保存" id="save"/>
+            <input type="button" value="Save" id="save"/>
         </div>
     </div>
     <div id="msg-alert"></div>

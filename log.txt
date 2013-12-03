@@ -1,8 +1,0 @@
-
-原
-http://aq.paipai.com/index.shtml
-跳转到
-http://www.paipai.com/aq/index.shtml
-
-host
-172.25.34.112 aq.paipai.com

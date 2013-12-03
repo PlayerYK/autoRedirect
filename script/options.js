@@ -45,7 +45,7 @@ $(function(){
             $('#tips').slideDown().text('保存成功！');
             setTimeout(function(){$('#tips').slideUp()},1000);            
         }else{
-            var errAlert = '以下行可能存在循环重定向，请检查后再保存！<br><br>';
+            var errAlert = '<h3>Redirect loop found!</h3><br>';
             $.each(errorArr,function(i,v){
                 errAlert += v;
             });
