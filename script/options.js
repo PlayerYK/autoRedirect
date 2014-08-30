@@ -1,9 +1,11 @@
+var regPatternUrl = 'http://jslab.pro/autoredirect/regpattern.txt';
+
 function initValue() {
     var list = localStorage['jump_list'];
 //    var isAuto = localStorage['jump_list_auto'] || 0;
     if(!list){
         $.ajax({
-           url:'http://ecd.ecc.com/kamalyu/regpattern.txt',
+           url:regPatternUrl,
             type:'get',
             dataType:'text',
             success:function(r){
@@ -49,7 +51,7 @@ $(function(){
             $.each(errorArr,function(i,v){
                 errAlert += v;
             });
-            $('#msg-alert').html(errAlert).show();;
+            $('#msg-alert').html(errAlert).show();
         }
     });
 });

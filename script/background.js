@@ -1,3 +1,4 @@
+var regPatternUrl = 'http://jslab.pro/autoredirect/regpattern.txt';
 
 // get 
 var isAuto = localStorage['jump_list_auto'] || 0;
@@ -16,7 +17,7 @@ function checkForValidUrl(tabId, changeInfo, tab) {
         var jump_list = localStorage['jump_list'];
         if(!jump_list){
             $.ajax({
-                url:'http://ecd.ecc.com/kamalyu/regpattern.txt',
+                url:regPatternUrl,
                 type:'get',
                 dataType:'text',
                 success:function(r){
@@ -105,7 +106,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 
     if(!src_list){
         $.ajax({
-            url:'http://ecd.ecc.com/kamalyu/regpattern.txt',
+            url:regPatternUrl,
             type:'get',
             dataType:'text',
             success:function(r){
