@@ -47,7 +47,7 @@ function startProcess(tab){
                 var regStr = line.split('####')[0];
                 var urlStr = line.split('####')[1];
                 j_list.push({
-                    'regStr':regStr.replace(/\//g,'\\/').replace(/\*/g,'\.\*\?').replace(/\n/,'').replace(/\r/,''),
+                    'regStr':regStr.replace(/\//g,'\\/').replace(/\?/g,'\\?').replace(/\*/g,'\.\*\?').replace(/\n/,'').replace(/\r/,''),
                     'urlStr':urlStr.replace(/\n/,'').replace(/\r/,'')
                 });
             }
@@ -124,8 +124,8 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
             var regStr = line.split('####')[0];
             var urlStr = line.split('####')[1];
             j_list.push({
-                'regStr':regStr.replace(/\//g,'\\/').replace(/\*/g,'\.\*\?').replace(/\n/,'').replace(/\r/,''),
-                'urlStr':urlStr.replace(/\n/,'').replace(/\r/,'')
+                'regStr':regStr.replace(/\//g,'\\/').replace(/\?/g,'\\?').replace(/\*/g,'\.\*\?').replace(/\n/,'').replace(/\r/,''),
+                'urlStr':urlStr.replace(/\n/,'').replace(/\r/,'') || ""
             });
         }
     });
@@ -133,6 +133,9 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
     var result_list = [];
     $.each(j_list,function(k,v){
         var reg = new RegExp(".*"+ v.regStr,'i');
+        debugLog(reg);
+        debugLog(url);
+        debugLog(reg.test(url));
         if (reg.test(url)){
             var onlineUrl = url.replace(reg, v.urlStr);
             if($.inArray(onlineUrl,result_list) == -1){
@@ -141,8 +144,12 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
         }
     });
 
-    debugLog('result length ' + result_list.length);
-    debugLog(result_list,2);
+    if(result_list.length){
+        debugLog('result length ' + result_list.length,2);
+        debugLog(result_list,2);
+    }else{
+        debugLog('no redirect',2);
+    }
     switch (result_list.length){
         case 0:
             break;

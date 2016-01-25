@@ -1,1 +1,2 @@
 paipai/static/####http://static.paipaiimg.com/
+link.zhihu.com/?target=####
