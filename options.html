@@ -58,8 +58,11 @@
         }
         .note {
             margin-top: 0.5em;
-            font-size: x-small;
+            font-size: small;
             color:#777;
+        }
+        .note li{
+            padding: 10px;
         }
         .msg-correct{
             background-color:#2ecc71;
@@ -73,6 +76,9 @@
             -webkit-border-bottom-left-radius: 5px;
             display:none;
         }
+        .co_green{
+            color:green;
+        }
     </style>
     <script type="text/javascript" src="script/jquery.min.js"></script>
     <script type="text/javascript" src="script/options.js"></script>
@@ -85,16 +91,19 @@
     <div class="section-header">Redirect pattern</div>
     <div class="section-content">
         <div class="option">
-            <div class="option-name">original####URL</div>
+            <div class="option-name">填写格式：查询字符串####替换URL</div>
             <div class="line">
                 <textarea name="jump_list" id="jump_list" class="jump-list"></textarea>
             </div>
             <div class="note">
                 <ul>
-                    <li>Local path to URL： local/path####http://mydevurl.com/subpath/</li>
-                    <li>URL to new URL： myDevUrl.com/path####http://myOnlineUrl.com/subpath/</li>
-                    <li>Support wildcard character <span class="co_red">*</span></li>
-                    <li>Be careful about redirect loop</li>
+                    <li>原理是用右侧链接，替换左侧从开始到对应的查询部分</li>
+                    <li>本地路径转URL，填写 <span class="co_green">local/path####http://mydevurl.com/subpath/</span> <br>
+                    将会让 D:\user\local\path\test.html 转换成 http://mydevurl.com/subpath/test.html</li>
+                    <li>URL跳转到新URL，填写 <span class="co_green">myDevUrl.com/path####http://myOnlineUrl.com/subpath</span> <br>
+                        将会让 http://myDevUrl.com/path/test.html 转换成 http://myOnlineUrl.com/subpath/test.html</li>
+                    <li>支持<span class="co_red">*</span>通配符，####右侧可以留空</li>
+                    <li>不要循环跳转</li>
                 </ul>
             </div>
         </div>
