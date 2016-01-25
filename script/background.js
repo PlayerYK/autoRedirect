@@ -138,6 +138,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
         debugLog(reg.test(url));
         if (reg.test(url)){
             var onlineUrl = url.replace(reg, v.urlStr);
+            onlineUrl = decodeURIComponent(onlineUrl);
             if($.inArray(onlineUrl,result_list) == -1){
                 result_list.push(onlineUrl);
             }
